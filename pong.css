@@ -1,0 +1,20 @@
+body{
+  background-color: grey;
+  font-family: sans-serif;
+}
+
+.center{
+  text-align: center;
+}
+
+
+ul{
+  margin-top: -10px;
+  margin-left: -25px;
+  list-style: none;
+  font-size: 32px;
+}
+
+canvas{
+  border: 5px solid #666666;
+}
