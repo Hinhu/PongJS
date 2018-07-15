@@ -6,13 +6,13 @@ class Ball{
     this.speedX=3;
     this.speedY=0;
     this.goingRight=false;
-    this.goingUp=true;
+    this.goingUp=false;
     this.screenW=screenW;
     this.screenH=screenH;
   }
 
   draw(c){
-    this.drawTail(c,3);
+    this.drawTail(c,5);
     c.fillStyle="#FFFFFF";
     c.fillRect(this.x,this.y,this.a,this.a);
   }
@@ -20,7 +20,17 @@ class Ball{
   drawTail(c,tail){
     c.fillStyle="#999999";
     c.beginPath();
-    if(this.goingRight && this.goingUp){
+    if(this.speedY==0 && this.goingRight){
+      c.moveTo(this.x,this.y);
+      c.lineTo(this.x-tail*this.speedX,this.y+this.a/2+tail*this.speedY);
+      c.lineTo(this.x,this.y+this.a);
+      c.fill();
+    }else if(this.speedY==0 && !this.goingRight){
+      c.moveTo(this.x+this.a,this.y);
+      c.lineTo(this.x+this.a+tail*this.speedX,this.y+this.a/2+tail*this.speedY);
+      c.lineTo(this.x+this.a,this.y+this.a);
+      c.fill();
+    }else if(this.goingRight && this.goingUp){
       c.moveTo(this.x,this.y);
       c.lineTo(this.x-tail*this.speedX,this.y+this.a+tail*this.speedY);
       c.lineTo(this.x+this.a,this.y+this.a);
@@ -43,10 +53,16 @@ class Ball{
     }
   }
 
-  move(p){
-    if(this.y+this.a>=player.y && this.y<=player.y+player.height && this.x<=player.width){
-      this.goingRight=true;
-    }
+  reset(){
+    this.x=this.screenW/2-this.a/2;
+    this.y=this.screenH/2-this.a/2;
+    this.spthis.eedX=3;
+    this.speedY=0;
+    this.goingRight=false;
+    this.goingUp=false;
+  }
+
+  move(p,e){
     if(this.y<=0 || this.y+this.a>=this.screenH){
       this.goingUp=!this.goingUp;
     }
@@ -60,5 +76,20 @@ class Ball{
     }else{
       this.y-=this.speedY;
     }
+    if(this.y+this.a>=p.y && this.y<=p.y+p.height && this.x<=p.width){
+      this.x=p.width;
+      this.goingRight=true;
+    }else if(this.y+this.a>=e.y && this.y<=e.y+e.height && this.x>=this.screenW-e.width){
+      this.x=this.screenW-this.a-e.width;
+      this.goingRight=false;
+    }
+    if(this.x<0){
+      this.reset();
+      return -1;
+    }else if(this.x>this.wscreenW){
+      this.reset();
+      return 1;
+    }
+    return 0;
   }
 }

@@ -7,6 +7,13 @@ body{
   text-align: center;
 }
 
+#title{
+  font-size: 60px;
+  font-family: consolas;
+  color: white;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+  margin-bottom: 0px;
+}
 
 ul{
   margin-top: -10px;
