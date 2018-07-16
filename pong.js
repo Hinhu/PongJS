@@ -2,8 +2,8 @@ const canvas = document.getElementById('pong');
 const context = canvas.getContext('2d');
 
 var arena = new Arena(context,canvas.width,canvas.height);
-var player = new Player(10,70,5,canvas.width,canvas.height,false);
-var enemy = new Player(10,70,5,canvas.width,canvas.height,true);
+var player = new Player(10,70,8,canvas.width,canvas.height,false);
+var enemy = new Player(10,70,8,canvas.width,canvas.height,true);
 var ball = new Ball(8,canvas.width,canvas.height);
 
 var stop = false;

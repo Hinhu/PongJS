@@ -30,7 +30,7 @@ class Player{
       }
     }else{
       let margin=3;
-      if((this.y+this.height)/2 + 5<(b.y+b.a)/2 && this.y+this.height-5<=this.screenH){
+      if((this.y+this.height)/2 +3<(b.y+b.a)/2 && this.y+this.height-5<=this.screenH){
         this.y+=this.speed;
       }else if ((this.y+this.height)/2>(b.y+b.a)/2 && this.y>=0) {
         this.y-=this.speed;
